@@ -72,6 +72,7 @@ ALLOWED_CHAT_IDS = {-1001234567890}  # replace with your group or user chat ID
 
 ## Flowchart
 
+```python
 flowchart TD
     A[Start] --> B[Connect Wi-Fi]
     B --> C[Read DHT22 Sensor]
