@@ -48,15 +48,13 @@ It supports bot commands, automatic alerts, and Wi-Fi auto-reconnect.
 
 ### Wiring Diagram
 
-| ESP32 Pin | Connected To      |
-|-----------|------------------|
-| 3.3V      | DHT22 VCC        |
+| ESP32 Pin | Connected To          |
+|-----------|-----------------------|
+| 3.3V      | DHT22 VCC             |
 | GND       | DHT22 GND + Relay GND |
-| GPIO4     | DHT22 Data       |
-| GPIO2     | Relay IN         |
-| 5V        | Relay VCC        |
-
-*Insert your wiring photo here*  
+| GPIO4     | DHT22 Data            |
+| GPIO2     | Relay IN              |
+| 5V        | Relay VCC             |
 
 ---
 
@@ -70,3 +68,19 @@ WIFI_PASSWORD = "your-wifi-password"
 
 BOT_TOKEN     = "your-telegram-bot-token"
 ALLOWED_CHAT_IDS = {-1001234567890}  # replace with your group or user chat ID
+```
+
+## Flowchart
+
+flowchart TD
+    A[Start] --> B[Connect Wi-Fi]
+    B --> C[Read DHT22 Sensor]
+    C --> D{Temp < 30°C?}
+    D -->|Yes| E{Relay ON?}
+    E -->|Yes| F[Turn Relay OFF + Send Auto-OFF]
+    E -->|No| C
+    D -->|No (≥30°C)| G{Relay ON?}
+    G -->|No| H[Send ALERT every 5s]
+    G -->|Yes| C
+    H --> C
+
