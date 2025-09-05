@@ -72,16 +72,4 @@ ALLOWED_CHAT_IDS = {-1001234567890}  # replace with your group or user chat ID
 
 ## Flowchart
 
-```python
-flowchart TD
-    A[Start] --> B[Connect Wi-Fi]
-    B --> C[Read DHT22 Sensor]
-    C --> D{Temp < 30°C?}
-    D -->|Yes| E{Relay ON?}
-    E -->|Yes| F[Turn Relay OFF + Send Auto-OFF]
-    E -->|No| C
-    D -->|No (≥30°C)| G{Relay ON?}
-    G -->|No| H[Send ALERT every 5s]
-    G -->|Yes| C
-    H --> C
-
+![ALT text](flowchart.png)
